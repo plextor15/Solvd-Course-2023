@@ -1,5 +1,7 @@
 package com.solvd.laba.block01.homework_01;
 
+import java.util.Random;
+
 public class Main {public static void main(String[] args){
     // -- Print arguments --
     System.out.println("\nPassed arguments:");
@@ -9,7 +11,14 @@ public class Main {public static void main(String[] args){
 
     // -- Sort Part --
     System.out.println("\n\nBubble Sort:");
-    int[] nums = {5, 2, 15, 4, 100, 0, 20};
+    //int[] nums = {5, 2, 15, 4, 100, 0, 20}
+
+    final int arrsize = 5;
+    int[] nums = new int[arrsize];
+    for (int i=0; i < arrsize; i++)
+    {
+        nums[i] = new Random().nextInt(99);
+    }
 
     System.out.print("Not sorted: ");
     for (int num : nums) {
