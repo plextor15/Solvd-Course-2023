@@ -2,35 +2,35 @@ package com.solvd.laba.block01.homework_01;
 
 import java.util.Random;
 
-public class Main {public static void main(String[] args){
-    // -- Print arguments --
-    System.out.println("\nPassed arguments:");
-    for (String argument : args) {
-        System.out.println(argument);
-    }
+public class Main {
+    public static void main(String[] args){
+        // -- Print arguments --
+        System.out.println("\nPassed arguments:");
+        for (String argument : args) {
+            System.out.println(argument);
+        }
+    
+        // -- Sort Part --
+        System.out.println("\n\nBubble Sort:");
+        //int[] nums = {5, 2, 15, 4, 100, 0, 20}
+    
+        final int arrsize = 5;
+        int[] nums = new int[arrsize];
+        for (int i=0; i < arrsize; i++){
+            nums[i] = new Random().nextInt(99);
+        }
+    
+        System.out.print("Not sorted: ");
+        for (int num : nums) {
+            System.out.print(num + ",");
+        }
 
-    // -- Sort Part --
-    System.out.println("\n\nBubble Sort:");
-    //int[] nums = {5, 2, 15, 4, 100, 0, 20}
-
-    final int arrsize = 5;
-    int[] nums = new int[arrsize];
-    for (int i=0; i < arrsize; i++)
-    {
-        nums[i] = new Random().nextInt(99);
+        bubbleSorting(nums);
+        System.out.print("\nSorted: ");
+        for (int num : nums) {
+            System.out.print(num + ",");
+        }
     }
-
-    System.out.print("Not sorted: ");
-    for (int num : nums) {
-        System.out.print(num + ",");
-    }
-
-    bubbleSorting(nums);
-    System.out.print("\nSorted: ");
-    for (int num : nums) {
-        System.out.print(num + ",");
-    }
-}
 
     public static void bubbleSorting(int[] numbers){
         int tmp;
