@@ -16,15 +16,18 @@ give the patient a diagnosis and prescribe treatment
 */
 
 
-// -- Classes list --
-// Doctor
-// Patient
-// Hospital
-// Prescription
-// Visit
-// Diease
-// StauInHospital
-// Treatment
+/* -- Classes list --
+01 Doctor
+02 Patient
+03 Prescription
+04 Hospital
+05 Appointment
+06 Disease
+07 StayInHospital
+08 Treatment
+09 Medicine
+10 HospitalRoom
+*/
 
 package com.solvd.laba.block01.oop_hospital;
 
