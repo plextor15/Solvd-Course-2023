@@ -1,19 +1,21 @@
 package com.solvd.laba.block01.oop_hospital;
 
 public class Medicine {
-	private String name;
-	private int pillsNumber;
+	public final String name;
+	public final int pillsNumber;
+	private Doctor doc;
 
-	public Medicine(String name, int pillsNumber) {
+	public Medicine(String name, int pillsNumber, Doctor d) {
 		this.name = name;
 		this.pillsNumber = pillsNumber;
+		this.doc = d;
 	}
 
-	public String getName() {
-		return name;
+	public Doctor getDoc() {
+		return doc;
 	}
 
-	public int getPillsNumber() {
-		return pillsNumber;
+	public void setDoc(Doctor doc) {
+		this.doc = doc;
 	}
 }

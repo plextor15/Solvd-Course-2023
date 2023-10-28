@@ -1,13 +1,22 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import java.util.ArrayList;
+
 public class Hospital {
-	private String hospitalName;
+	public final String hospitalName;
+	public final int amountOfRooms;
 
-	public Hospital(String name) {
-		hospitalName = name;
-	}
+	private ArrayList<Patient> patientsInHospital;
+	private ArrayList<Doctor> doctors;
+	private HospitalRoom[] hospitalRooms;
 
-	public String getHospitalName() {
-		return hospitalName;
+	public Hospital(String hospitalName, int amountOfRooms) {
+		this.hospitalName = hospitalName;
+		this.amountOfRooms = amountOfRooms;
+
+		HospitalRoom[] rooms;
+		for (int i = 0; i < amountOfRooms; i++) {
+
+		}
 	}
 }
