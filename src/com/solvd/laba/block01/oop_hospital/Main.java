@@ -34,6 +34,20 @@ package com.solvd.laba.block01.oop_hospital;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("START\n");
+		Hospital hospital = new Hospital("UCLA Medical Center", 10);
+		Patient sickPatient = new Patient("Andrew", "Kowalsky", 30);
+		Doctor doctor = new Doctor("John", "Mitchell");
+
+		System.out.println("-- START --");
+
+		doctor.diagnosePatient(sickPatient);
+		doctor.giveTreatment(sickPatient);
+		if (sickPatient.givenTreatment == new Treatment()) { //TO DO
+			System.out.println("...");
+		} else {
+			doctor.givePrescription(sickPatient);
+		}
+
+		System.out.println("-- FINISH --");
 	}
 }

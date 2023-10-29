@@ -17,4 +17,8 @@ public class Patient {
 		this.age = age;
 		this.socialNumber = new Random().nextInt(100000, 999999); //id number of citizen (PESEL)
 	}
+
+	public String printOut() {
+		return this.name + " " + this.surname;
+	}
 }
