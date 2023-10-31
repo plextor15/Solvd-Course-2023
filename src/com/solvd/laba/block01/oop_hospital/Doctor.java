@@ -18,7 +18,7 @@ public class Doctor {
 		//d.name = "Flu"; //some disease
 		p.disease = new Disease("Flu");
 
-		System.out.println(p.printOut() + " has been diagnosed with " + p.disease);
+		System.out.println(p.printOut() + " has been diagnosed with " + p.disease.name);
 		//System.out.println(p.printOut() + " has been diagnosed with " + p.disease + "  - " + d.name); //DEBUG ONLY!!
 	}
 
