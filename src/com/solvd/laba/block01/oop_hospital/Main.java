@@ -42,10 +42,11 @@ public class Main {
 
 		doctor.diagnosePatient(sickPatient);
 		doctor.giveTreatment(sickPatient);
-		if (sickPatient.givenTreatment == new Treatment()) { //TO DO
+		if (sickPatient.givenTreatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
 			System.out.println("...");
 		} else {
-			doctor.givePrescription(sickPatient);
+			doctor.givePrescription(sickPatient, 7, 1);
+			doctor.makeApointments(sickPatient, "10-11-2023");
 		}
 
 		System.out.println("-- FINISH --");

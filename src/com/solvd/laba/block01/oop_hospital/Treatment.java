@@ -17,7 +17,7 @@ public class Treatment {
 		if (t == TypeOfTreatment.STAYINHOSPITAL) {
 			return "stay in hospital";
 		} else if (t == TypeOfTreatment.APPOINTMENTS) {
-			return "appontments";
+			return "appointments";
 		}
 		return "unknown treatment";
 	}

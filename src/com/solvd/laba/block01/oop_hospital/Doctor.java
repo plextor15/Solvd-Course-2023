@@ -23,7 +23,7 @@ public class Doctor {
 
 	public void giveTreatment(Patient p) {
 		Treatment t = new Treatment();
-		t.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
+		t.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS); //Hardcoded for now
 		p.givenTreatment = t;
 
 		System.out.println("Treatment is: " + p.givenTreatment.printThisTreatment());
@@ -34,8 +34,8 @@ public class Doctor {
 		System.out.println("Patient " + p.printOut() + " needs to stay in hospital.");
 	}
 
-	public void givePrescription(Patient p) {
-		Prescription prescription = new Prescription(this);
+	public void givePrescription(Patient p, int days, int pills) {
+		Prescription prescription = new Prescription(this, days, pills);
 		Medicine med = new Medicine("Gripex", 10, this);
 		prescription.medicines.add(med);
 
@@ -43,5 +43,11 @@ public class Doctor {
 		for (Medicine m : prescription.medicines) {
 			System.out.println("    - " + name);
 		}
+		System.out.println("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays);
+	}
+
+	public void makeApointments(Patient p, String date) {
+		Appointment Ap = new Appointment(date, this);
+		System.out.println("Doctor has an apointment on " + date);
 	}
 }
