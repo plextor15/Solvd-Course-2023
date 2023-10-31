@@ -26,7 +26,7 @@ public class Treatment {
 		if (this.whatTreatment == TypeOfTreatment.STAYINHOSPITAL) {
 			return "stay in hospital";
 		} else if (this.whatTreatment == TypeOfTreatment.APPOINTMENTS) {
-			return "appontments";
+			return "appointments";
 		}
 		return "unknown treatment";
 	}

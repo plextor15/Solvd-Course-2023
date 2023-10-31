@@ -16,5 +16,7 @@ public class Prescription {
 		this.barCode = new Random().nextInt(1000, 9999);
 		this.takeDays = days;
 		this.takePillsPerDay = pills;
+
+		medicines = new ArrayList<Medicine>();
 	}
 }

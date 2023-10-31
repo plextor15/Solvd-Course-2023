@@ -50,7 +50,7 @@ public class HospitalRoom {
 			patientsInRoom.remove(p);
 			freeBeds++;
 		} else {
-			System.out.println(p.getSurname() + " " + p.getName() + " is not in this room");
+			System.out.println(p.printOut() + " is not in this room");
 		}
 	}
 }

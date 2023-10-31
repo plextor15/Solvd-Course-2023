@@ -12,7 +12,7 @@ Requirements:
 
 Hospital
 give the patient a diagnosis and prescribe treatment
-	(put in a hospital or write a prescription and make an appointment))
+	(put in a hospital or write a prescription and make an appointment)
 */
 
 
@@ -38,17 +38,17 @@ public class Main {
 		Patient sickPatient = new Patient("Andrew", "Kowalsky", 30);
 		Doctor doctor = new Doctor("John", "Mitchell");
 
-		System.out.println("-- START --");
+		System.out.println("\n\nWelcome to " + hospital.hospitalName);
 
 		doctor.diagnosePatient(sickPatient);
 		doctor.giveTreatment(sickPatient);
 		if (sickPatient.givenTreatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
-			System.out.println("...");
+			doctor.keepPatientInHospital(sickPatient);
 		} else {
 			doctor.givePrescription(sickPatient, 7, 1);
-			doctor.makeApointments(sickPatient, "10-11-2023");
+			doctor.makeApointment(sickPatient, "10-11-2023");
 		}
 
-		System.out.println("-- FINISH --");
+		System.out.println("-- FINISH --\n\n");
 	}
 }

@@ -14,11 +14,12 @@ public class Doctor {
 	}
 
 	public void diagnosePatient(Patient p) {
-		Disease d = new Disease();
-		d.name = "Flu"; //some disease
-		p.disease = d;
+		//Disease d = new Disease("Flu");
+		//d.name = "Flu"; //some disease
+		p.disease = new Disease("Flu");
 
 		System.out.println(p.printOut() + " has been diagnosed with " + p.disease);
+		//System.out.println(p.printOut() + " has been diagnosed with " + p.disease + "  - " + d.name); //DEBUG ONLY!!
 	}
 
 	public void giveTreatment(Patient p) {
@@ -30,24 +31,24 @@ public class Doctor {
 	}
 
 	public void keepPatientInHospital(Patient p) {
-		//TO DO
+		//...
 		System.out.println("Patient " + p.printOut() + " needs to stay in hospital.");
 	}
 
 	public void givePrescription(Patient p, int days, int pills) {
 		Prescription prescription = new Prescription(this, days, pills);
-		Medicine med = new Medicine("Gripex", 10, this);
+		Medicine med = new Medicine("Gripex", 10, this); //Hardcoded for now
 		prescription.medicines.add(med);
 
 		System.out.println("Doctor " + this.printOut() + " prescribed to " + p.printOut() + " :");
 		for (Medicine m : prescription.medicines) {
-			System.out.println("    - " + name);
+			System.out.println("    - " + m.name);
 		}
-		System.out.println("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays);
+		System.out.println("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
 	}
 
-	public void makeApointments(Patient p, String date) {
+	public void makeApointment(Patient p, String date) {
 		Appointment Ap = new Appointment(date, this);
-		System.out.println("Doctor has an apointment on " + date);
+		System.out.println("Doctor has an apointment on " + Ap.getDate() + " with " + p.printOut());
 	}
 }

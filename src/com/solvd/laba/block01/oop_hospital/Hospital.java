@@ -16,7 +16,7 @@ public class Hospital {
 
 		HospitalRoom[] rooms;
 		for (int i = 0; i < amountOfRooms; i++) {
-
+			HospitalRoom hospitalRoom = new HospitalRoom(i, 6);
 		}
 	}
 }
