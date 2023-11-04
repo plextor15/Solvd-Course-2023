@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 public class HospitalRoom {
 	private final int number;
-	private int maxBeds;
+	private final int maxBeds = 6;
 	private int freeBeds;
 	private ArrayList<Patient> patientsInRoom;
 
-	public HospitalRoom(int number, int maxBeds) {
+	public HospitalRoom(int number) {
 		this.number = number;
-		this.maxBeds = maxBeds;
 		this.freeBeds = maxBeds;
+	}
+
+	@Override
+	public String toString() {
+		return "A0" + number;
 	}
 
 	public int getNumber() {
@@ -20,16 +24,6 @@ public class HospitalRoom {
 
 	public int getMaxBeds() {
 		return maxBeds;
-	}
-
-	public void setMaxBeds(int maxBeds) {
-		if (maxBeds < patientsInRoom.size()) {
-			System.out.println("Too many patients in this room.");
-			return;
-		}
-
-		this.maxBeds = maxBeds;
-		this.freeBeds = maxBeds - patientsInRoom.size();
 	}
 
 	public int getFreeBeds() {
@@ -50,7 +44,7 @@ public class HospitalRoom {
 			patientsInRoom.remove(p);
 			freeBeds++;
 		} else {
-			System.out.println(p.printOut() + " is not in this room");
+			System.out.println(p.toString() + " is not in this room");
 		}
 	}
 }
