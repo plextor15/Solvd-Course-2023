@@ -6,10 +6,10 @@ public class Hospital {
 	public final String hospitalName;
 	public final int amountOfRooms;
 
-	private ArrayList<Patient> patients;
-	public ArrayList<Doctor> doctors;
+	protected ArrayList<Patient> patients;
+	protected ArrayList<Doctor> doctors;
 	public ArrayList<Appointment> appointments;
-	private HospitalRoom[] hospitalRooms;
+	protected HospitalRoom[] hospitalRooms;
 
 	public Hospital(String hospitalName, int amountOfRooms) {
 		this.hospitalName = hospitalName;
