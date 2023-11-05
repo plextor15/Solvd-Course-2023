@@ -11,6 +11,7 @@ public class Doctor extends Person {
 	public Doctor(String name, String surname, String speciality) {
 		super(name, surname);
 		this.speciality = speciality;
+		this.assignedPatients = new ArrayList<Integer>();
 	}
 
 	@Override
@@ -33,11 +34,11 @@ public class Doctor extends Person {
 	}
 
 	public void diagnosePatient(Patient p) {
-		Disease flu = new Disease("Flu", false);
-		Disease unknkownDisease = new Disease("Unknown", true);
-
 		Diagnosis diagnose = new Diagnosis();
 		Treatment treatment = new Treatment();
+
+		final Disease flu = new Disease("Flu", false);
+		final Disease unknkownDisease = new Disease("Unknown", true);
 
 		switch (p.symptoms.description) {
 			case "Throat ache":
@@ -49,36 +50,44 @@ public class Doctor extends Person {
 			default:
 				diagnose.disease = unknkownDisease;
 		}
+		p.diagnosis = diagnose;
 
 		if (p.diagnosis.disease.isDangerous) {
 			treatment.setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
 		} else {
 			treatment.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
+			this.givePrescription(p);
 		}
 		diagnose.treatment = treatment;
 
 		p.diagnosis = diagnose;
+		System.out.println(p.toString() + " has been diagnosed with " + p.diagnosis.toString());
 	}
 
-	public void keepPatientInHospital(Patient p) {
+	public void givePrescription(Patient p) {
+		//public void givePrescription(Patient p, int days, int pills) {
+		int days = p.symptoms.amountOfPain;
+		int pillsPerDay;// = p.symptoms.amountOfPain;
+		Medicine med = new Medicine("-", -1); //So there is no warning
+		Prescription prescription;
 
-		System.out.println(p.toString() + " needs to stay in hospital.");
-	}
+		switch (p.diagnosis.disease.name) {
+			case "Flu":
+				med = new Medicine("Gripex", 15);
+				break;
+			case "Tonsillitis":
+				//...
+				break;
+		}
 
-	public void givePrescription(Patient p, int days, int pills) {
-		Prescription prescription = new Prescription(this, days, pills);
-		Medicine med = new Medicine("Gripex", 10, this); //Hardcoded for now
+		prescription = new Prescription(this, days, med.pillsNumber / days);
 		prescription.medicines.add(med);
+		p.prescription = prescription;
 
-		System.out.println("Doctor " + this.toString() + " prescribed to " + p.toString() + " :");
+		System.out.println(this.toString() + " prescribed to " + p.toString() + " :");
 		for (Medicine m : prescription.medicines) {
 			System.out.println("    - " + m.name);
 		}
 		System.out.println("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
 	}
-
-//	public void makeApointment(Patient p, String date) {
-//		Appointment ap = new Appointment(date, this);
-//		System.out.println(this.toString() + " has an apointment on " + ap.getDate() + " with " + p.toString());
-//	}
 }

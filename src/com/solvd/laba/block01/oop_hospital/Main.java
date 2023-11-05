@@ -26,7 +26,8 @@ package com.solvd.laba.block01.oop_hospital;
 public class Main {
 	public static void main(String[] args) {
 		Hospital hospital = new Hospital("UCLA Medical Center", 10);
-		hospital.doctors.add(new Doctor("John", "Mitchell", "laryngologist"));
+		Doctor doc = new Doctor("John", "Mitchell", "laryngologist");
+		hospital.doctors.add(doc);
 
 		Patient sickPatient = new Patient("Andrew", "Kowalsky", 30);
 		sickPatient.symptoms = new Symptoms("Throat ache", 4);

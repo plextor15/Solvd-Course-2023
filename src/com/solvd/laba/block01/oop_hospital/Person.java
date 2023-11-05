@@ -1,8 +1,8 @@
 package com.solvd.laba.block01.oop_hospital;
 
 abstract class Person {
-	public final String name;
-	public final String surname;
+	protected final String name;
+	protected final String surname;
 
 	protected Person(String name, String surname) {
 		this.name = name;
@@ -10,7 +10,5 @@ abstract class Person {
 	}
 
 	@Override
-	public String toString() {
-		return name + " " + surname;
-	}
+	public abstract String toString();
 }

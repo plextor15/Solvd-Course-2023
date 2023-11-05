@@ -15,6 +15,10 @@ public class Hospital {
 		this.hospitalName = hospitalName;
 		this.amountOfRooms = amountOfRooms;
 
+		this.patients = new ArrayList<Patient>();
+		this.doctors = new ArrayList<Doctor>();
+		this.appointments = new ArrayList<Appointment>();
+
 		HospitalRoom[] rooms = new HospitalRoom[amountOfRooms];
 		for (int i = 0; i < amountOfRooms; i++) {
 			HospitalRoom hospitalRoom = new HospitalRoom(i);
@@ -29,7 +33,7 @@ public class Hospital {
 	}
 
 	public void welcomeMessage() {
-		System.out.println("\nWelcome to " + this.toString() + "\n");
+		System.out.println("\nWelcome to " + this.toString());
 	}
 
 	public Doctor assignDoctor(Patient p) {
@@ -76,10 +80,8 @@ public class Hospital {
 		} else {
 			for (Doctor d : this.doctors) {
 				if (p.assignedDoctor == d.hashCode()) {
-
 					this.makeAppointment(p, d);
-					d.givePrescription(p,);
-
+					//d.givePrescription(p,);
 					break;
 				}
 			}

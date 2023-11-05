@@ -9,19 +9,20 @@ public class Treatment {
 
 	private TypeOfTreatment whatTreatment;
 
-	public TypeOfTreatment getWhatTreatment() {
-		return whatTreatment;
-	}
-
-	public static String printTreatment(TypeOfTreatment t) {
-		if (t == TypeOfTreatment.STAYINHOSPITAL) {
+	@Override
+	public String toString() {
+		if (this.whatTreatment == TypeOfTreatment.STAYINHOSPITAL) {
 			return "stay in hospital";
-		} else if (t == TypeOfTreatment.APPOINTMENTS) {
+		} else if (this.whatTreatment == TypeOfTreatment.APPOINTMENTS) {
 			return "appointments";
 		}
 		return "unknown treatment";
 	}
 
+	public TypeOfTreatment getWhatTreatment() {
+		return whatTreatment;
+	}
+	
 	public String printThisTreatment() {
 		if (this.whatTreatment == TypeOfTreatment.STAYINHOSPITAL) {
 			return "stay in hospital";

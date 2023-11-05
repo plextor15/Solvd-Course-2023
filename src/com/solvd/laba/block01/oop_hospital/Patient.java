@@ -10,6 +10,7 @@ public class Patient extends Person {
 	public Symptoms symptoms;
 	public Diagnosis diagnosis;
 	public int assignedDoctor;
+	public Prescription prescription;
 
 	public Patient(String name, String surname, int age) {
 		super(name, surname);
@@ -20,7 +21,7 @@ public class Patient extends Person {
 
 	@Override
 	public String toString() {
-		return "patient" + this.name + " " + this.surname;
+		return "patient " + this.name + " " + this.surname;
 	}
 
 	@Override

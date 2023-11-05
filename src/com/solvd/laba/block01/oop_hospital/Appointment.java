@@ -11,7 +11,7 @@ public class Appointment {
 		this.date = date;
 		this.doc = doc;
 
-		System.out.println("Appointment with doctor " + this.doc.printOut() + " has been set to: " + this.date);
+		System.out.println("Appointment with " + this.doc.toString() + " has been set to: " + this.date);
 	}
 
 	public String getDate() {

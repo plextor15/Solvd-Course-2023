@@ -18,6 +18,21 @@ public class HospitalRoom {
 		return "A0" + number;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		HospitalRoom that = (HospitalRoom) o;
+
+		return number == that.number;
+	}
+
+	@Override
+	public int hashCode() {
+		return number;
+	}
+
 	public int getNumber() {
 		return number;
 	}
@@ -39,7 +54,7 @@ public class HospitalRoom {
 		}
 	}
 
-	public void dischargePatient(Patient p) {
+	public void removePatient(Patient p) {
 		if (patientsInRoom.contains(p)) {
 			patientsInRoom.remove(p);
 			freeBeds++;
