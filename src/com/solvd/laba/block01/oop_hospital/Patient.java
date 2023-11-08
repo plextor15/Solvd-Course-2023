@@ -1,8 +1,10 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.interfaces.IPrintable;
+
 import java.util.Random;
 
-public class Patient extends Person {
+public class Patient extends Person implements IPrintable {
 
 	public int age;
 	private final int socialNumber;
@@ -21,7 +23,7 @@ public class Patient extends Person {
 
 	@Override
 	public String toString() {
-		return "patient " + this.name + " " + this.surname;
+		return this.name + " " + this.surname;
 	}
 
 	@Override
@@ -37,6 +39,11 @@ public class Patient extends Person {
 	@Override
 	public int hashCode() {
 		return socialNumber;
+	}
+
+	@Override
+	public String printOut() {
+		return "patient " + this.toString();
 	}
 
 	public Treatment whatTreatment() {

@@ -1,8 +1,10 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.interfaces.IRoomOccupiable;
+
 import java.util.ArrayList;
 
-public class HospitalRoom {
+public class HospitalRoom implements IRoomOccupiable {
 	private final int number;
 	private final int maxBeds = 6;
 	private int freeBeds;
@@ -45,6 +47,7 @@ public class HospitalRoom {
 		return freeBeds;
 	}
 
+	@Override
 	public void addPatient(Patient p) {
 		if (freeBeds > 0) {
 			freeBeds--;
@@ -54,6 +57,7 @@ public class HospitalRoom {
 		}
 	}
 
+	@Override
 	public void removePatient(Patient p) {
 		if (patientsInRoom.contains(p)) {
 			patientsInRoom.remove(p);

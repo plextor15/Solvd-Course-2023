@@ -1,9 +1,12 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.interfaces.IPrescribable;
+import com.solvd.laba.block01.oop_hospital.interfaces.IPrintable;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Doctor extends Person {
+public class Doctor extends Person implements IPrintable, IPrescribable {
 	public final String speciality;
 	public ArrayList<Integer> assignedPatients;
 	public final boolean isAvailable = true;
@@ -11,12 +14,12 @@ public class Doctor extends Person {
 	public Doctor(String name, String surname, String speciality) {
 		super(name, surname);
 		this.speciality = speciality;
-		this.assignedPatients = new ArrayList<Integer>();
+		this.assignedPatients = new ArrayList<>();
 	}
 
 	@Override
 	public String toString() {
-		return "doctor " + this.name + " " + this.surname;
+		return this.name + " " + this.surname;
 	}
 
 	@Override
@@ -31,6 +34,11 @@ public class Doctor extends Person {
 	@Override
 	public int hashCode() {
 		return Objects.hash(this.name, this.surname);
+	}
+
+	@Override
+	public String printOut() {
+		return "doctor " + this;
 	}
 
 	public void diagnosePatient(Patient p) {
@@ -61,30 +69,34 @@ public class Doctor extends Person {
 		diagnose.treatment = treatment;
 
 		p.diagnosis = diagnose;
-		System.out.println(p.toString() + " has been diagnosed with " + p.diagnosis.toString());
+		System.out.println(p.printOut() + " has been diagnosed with " + p.diagnosis.printOut());
 	}
 
+	@Override
 	public void givePrescription(Patient p) {
-		//public void givePrescription(Patient p, int days, int pills) {
 		int days = p.symptoms.amountOfPain;
-		int pillsPerDay;// = p.symptoms.amountOfPain;
-		Medicine med = new Medicine("-", -1); //So there is no warning
+		Medicine med = new Medicine("", 0);
 		Prescription prescription;
+
+		final Medicine gripex = new Medicine("Gripex", 15);
+		final Medicine unknown = new Medicine("Unknown", 0);
 
 		switch (p.diagnosis.disease.name) {
 			case "Flu":
-				med = new Medicine("Gripex", 15);
+				med = gripex;
 				break;
 			case "Tonsillitis":
 				//...
 				break;
+			default:
+				med = unknown;
 		}
 
 		prescription = new Prescription(this, days, med.pillsNumber / days);
 		prescription.medicines.add(med);
 		p.prescription = prescription;
 
-		System.out.println(this.toString() + " prescribed to " + p.toString() + " :");
+		System.out.println(this.printOut() + " prescribed to " + p + " :");
 		for (Medicine m : prescription.medicines) {
 			System.out.println("    - " + m.name);
 		}

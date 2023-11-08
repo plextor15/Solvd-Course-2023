@@ -1,8 +1,10 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.interfaces.IAppointable;
+
 import java.util.ArrayList;
 
-public abstract class HealthcareEntity {
+public abstract class HealthcareEntity implements IAppointable {
 	public final String Name;
 
 	protected ArrayList<Patient> patients;

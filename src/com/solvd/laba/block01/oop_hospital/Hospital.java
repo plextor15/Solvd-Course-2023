@@ -1,23 +1,20 @@
 package com.solvd.laba.block01.oop_hospital;
 
-import java.util.ArrayList;
+import com.solvd.laba.block01.oop_hospital.interfaces.IAppointable;
+import com.solvd.laba.block01.oop_hospital.interfaces.ITreatable;
 
-public class Hospital {
-	public final String hospitalName;
-	public final int amountOfRooms;
+public final class Hospital extends HealthcareEntity implements ITreatable, IAppointable {
+	private final int amountOfRooms;
+	private HospitalRoom[] hospitalRooms;
+	private static int howManyHospitals = 0;
 
-	protected ArrayList<Patient> patients;
-	protected ArrayList<Doctor> doctors;
-	public ArrayList<Appointment> appointments;
-	protected HospitalRoom[] hospitalRooms;
+	static {
+		System.out.println("Hospital no." + (++howManyHospitals) + " successfully created.\n");
+	}
 
 	public Hospital(String hospitalName, int amountOfRooms) {
-		this.hospitalName = hospitalName;
+		super(hospitalName);
 		this.amountOfRooms = amountOfRooms;
-
-		this.patients = new ArrayList<Patient>();
-		this.doctors = new ArrayList<Doctor>();
-		this.appointments = new ArrayList<Appointment>();
 
 		HospitalRoom[] rooms = new HospitalRoom[amountOfRooms];
 		for (int i = 0; i < amountOfRooms; i++) {
@@ -25,13 +22,15 @@ public class Hospital {
 			rooms[i] = hospitalRoom;
 		}
 		this.hospitalRooms = rooms;
+		//howManyHospitals++;
 	}
 
 	@Override
 	public String toString() {
-		return this.hospitalName;
+		return this.Name;
 	}
 
+	@Override
 	public void welcomeMessage() {
 		System.out.println("\nWelcome to " + this.toString());
 	}
@@ -52,10 +51,11 @@ public class Hospital {
 	}
 
 	private String whenDoctorAvailable(Doctor d) {
-		//...
-		return "20-11-2023";
+		final String appointmentDate = "20-11-2023";
+		return appointmentDate;
 	}
 
+	@Override
 	public void makeAppointment(Patient p, Doctor doc) {
 		String appointmentDate = whenDoctorAvailable(doc);
 		Appointment ap = new Appointment(appointmentDate, doc);
@@ -68,12 +68,13 @@ public class Hospital {
 			if (h.getFreeBeds() > 0) {
 				h.addPatient(p);
 
-				System.out.println(p.toString() + " needs to stay in hospital. Patient is in room " + h.toString());
+				System.out.println(p.toString() + " needs to stay in hospital. Patient is in room " + h);
 				break;
 			}
 		}
 	}
 
+	@Override
 	public void provideTreatment(Patient p) {
 		if (p.diagnosis.treatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
 			this.keepPatientInHospital(p);
@@ -81,7 +82,6 @@ public class Hospital {
 			for (Doctor d : this.doctors) {
 				if (p.assignedDoctor == d.hashCode()) {
 					this.makeAppointment(p, d);
-					//d.givePrescription(p,);
 					break;
 				}
 			}

@@ -1,5 +1,7 @@
 /*
-Create a class hierarchy. Topic will be assigned personally
+Create a class hierarchy: Hospital
+give the patient a diagnosis and prescribe treatment (put in a hospital or write a prescription and make an appointment)
+
 Requirements:
 - At least 10 classes
 - All classes must contain properties (minimum 1)
@@ -13,11 +15,10 @@ Requirements:
 - Use protected modifier at least 5 times
 - Override methods from class Object (toString(), hashcode(), equals()) for at least 3 classes from the hierarchy
 
-- Topic assignments:
-
-Hospital
-give the patient a diagnosis and prescribe treatment
-	(put in a hospital or write a prescription and make an appointment)
+- Add 5 interfaces to the existing hierarchy.
+- Use polymorphism with the abstract class and interface from the hierarchy.
+- Create final class, method, variable.
+- Create a static block, method, variable.
 */
 
 package com.solvd.laba.block01.oop_hospital;
@@ -34,18 +35,9 @@ public class Main {
 
 
 		hospital.welcomeMessage();
-		Doctor doctor = hospital.assignDoctor(sickPatient);
-
-		doctor.diagnosePatient(sickPatient);
+		hospital.assignDoctor(sickPatient).diagnosePatient(sickPatient);
 		hospital.provideTreatment(sickPatient);
 
-//		if (sickPatient.givenTreatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
-//			doctor.keepPatientInHospital(sickPatient);
-//		} else {
-//			doctor.givePrescription(sickPatient, 7, 1);
-//			doctor.makeApointment(sickPatient, "10-11-2023");
-//		}
-
-		System.out.println("-- FINISH --\n\n");
+		System.out.println("\n-- FINISH --");
 	}
 }

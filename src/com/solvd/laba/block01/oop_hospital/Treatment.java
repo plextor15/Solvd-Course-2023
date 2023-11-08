@@ -22,11 +22,11 @@ public class Treatment {
 	public TypeOfTreatment getWhatTreatment() {
 		return whatTreatment;
 	}
-	
-	public String printThisTreatment() {
-		if (this.whatTreatment == TypeOfTreatment.STAYINHOSPITAL) {
+
+	public static String printTreatmentType(TypeOfTreatment t) {
+		if (t == TypeOfTreatment.STAYINHOSPITAL) {
 			return "stay in hospital";
-		} else if (this.whatTreatment == TypeOfTreatment.APPOINTMENTS) {
+		} else if (t == TypeOfTreatment.APPOINTMENTS) {
 			return "appointments";
 		}
 		return "unknown treatment";

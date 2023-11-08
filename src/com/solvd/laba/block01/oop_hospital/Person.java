@@ -1,6 +1,6 @@
 package com.solvd.laba.block01.oop_hospital;
 
-abstract class Person {
+public abstract class Person {
 	protected final String name;
 	protected final String surname;
 
