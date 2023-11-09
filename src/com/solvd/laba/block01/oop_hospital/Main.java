@@ -19,12 +19,26 @@ Requirements:
 - Use polymorphism with the abstract class and interface from the hierarchy.
 - Create final class, method, variable.
 - Create a static block, method, variable.
+
+- Create 5 custom exceptions. Some of them should be Runtime exceptions
+- Handle exceptions in 2 ways: with throws and try/catch
+- Use try-catch with resources.
+- Add Logger usage. Log messages to the console and file file. Replace System.out calls with Loggers across entire project
 */
 
 package com.solvd.laba.block01.oop_hospital;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Main {
+	static {
+		System.setProperty("log4j.configurationFile", "log4j.xml");
+	}
+
+	private static final Logger LOGGER = LogManager.getLogger(Main.class);
+
 	public static void main(String[] args) {
 		Hospital hospital = new Hospital("UCLA Medical Center", 10);
 		Doctor doc = new Doctor("John", "Mitchell", "laryngologist");
@@ -38,6 +52,6 @@ public class Main {
 		hospital.assignDoctor(sickPatient).diagnosePatient(sickPatient);
 		hospital.provideTreatment(sickPatient);
 
-		System.out.println("\n-- FINISH --");
+		LOGGER.info("\n-- FINISH --");
 	}
 }
