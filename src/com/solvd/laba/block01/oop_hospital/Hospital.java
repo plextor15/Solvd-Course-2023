@@ -2,14 +2,18 @@ package com.solvd.laba.block01.oop_hospital;
 
 import com.solvd.laba.block01.oop_hospital.interfaces.IAppointable;
 import com.solvd.laba.block01.oop_hospital.interfaces.ITreatable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class Hospital extends HealthcareEntity implements ITreatable, IAppointable {
 	private final int amountOfRooms;
 	private HospitalRoom[] hospitalRooms;
 	private static int howManyHospitals = 0;
 
+	private static final Logger LOGGER = LogManager.getLogger(Hospital.class);
+
 	static {
-		System.out.println("Hospital no." + (++howManyHospitals) + " successfully created.\n");
+		LOGGER.info("Hospital no." + (++howManyHospitals) + " successfully created.\n");
 	}
 
 	public Hospital(String hospitalName, int amountOfRooms) {
@@ -22,7 +26,6 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 			rooms[i] = hospitalRoom;
 		}
 		this.hospitalRooms = rooms;
-		//howManyHospitals++;
 	}
 
 	@Override
@@ -30,9 +33,13 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		return this.Name;
 	}
 
+	public int getAmountOfRooms() {
+		return amountOfRooms;
+	}
+
 	@Override
 	public void welcomeMessage() {
-		System.out.println("\nWelcome to " + this.toString());
+		LOGGER.info("\nWelcome to " + this.toString());
 	}
 
 	public Doctor assignDoctor(Patient p) {
@@ -60,7 +67,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		String appointmentDate = whenDoctorAvailable(doc);
 		Appointment ap = new Appointment(appointmentDate, doc);
 		appointments.add(ap);
-		System.out.println(doc.toString() + " has an appointment on " + ap.getDate() + " with " + p.toString());
+		LOGGER.info(doc.toString() + " has an appointment on " + ap.getDate() + " with " + p.toString());
 	}
 
 	public void keepPatientInHospital(Patient p) {
@@ -68,7 +75,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 			if (h.getFreeBeds() > 0) {
 				h.addPatient(p);
 
-				System.out.println(p.toString() + " needs to stay in hospital. Patient is in room " + h);
+				LOGGER.info(p.toString() + " needs to stay in hospital. Patient is in room " + h);
 				break;
 			}
 		}

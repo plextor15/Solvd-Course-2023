@@ -1,6 +1,8 @@
 package com.solvd.laba.block01.oop_hospital;
 
 import com.solvd.laba.block01.oop_hospital.interfaces.IRoomOccupiable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
@@ -9,6 +11,8 @@ public class HospitalRoom implements IRoomOccupiable {
 	private final int maxBeds = 6;
 	private int freeBeds;
 	private ArrayList<Patient> patientsInRoom;
+
+	private static final Logger LOGGER = LogManager.getLogger(Doctor.class);
 
 	public HospitalRoom(int number) {
 		this.number = number;
@@ -53,7 +57,7 @@ public class HospitalRoom implements IRoomOccupiable {
 			freeBeds--;
 			patientsInRoom.add(p);
 		} else {
-			System.out.println("No free beds in room " + number);
+			LOGGER.warn("No free beds in room " + number);
 		}
 	}
 
@@ -63,7 +67,7 @@ public class HospitalRoom implements IRoomOccupiable {
 			patientsInRoom.remove(p);
 			freeBeds++;
 		} else {
-			System.out.println(p.toString() + " is not in this room");
+			LOGGER.warn(p.toString() + " is not in this room");
 		}
 	}
 }

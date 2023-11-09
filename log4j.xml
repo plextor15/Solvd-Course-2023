@@ -9,15 +9,24 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
+        <File name="File" fileName="./logs/%d{HH-mm-ss}.log">
+            <PatternLayout>
+                <pattern>"%d{HH:mm:ss.SSSS} [%t] %-5level %logger{36} - %msg%n"</pattern>
+            </PatternLayout>
+        </File>
+
     </Appenders>
 
     <Loggers>
 
         <Logger name="DebugLogger" level="debug">
             <AppenderRef ref="ConsoleDetail"/>
+            <AppenderRef ref="File"/>
         </Logger>
+
         <Root level="info">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
         </Root>
 
     </Loggers>

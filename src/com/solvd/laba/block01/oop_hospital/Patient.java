@@ -51,7 +51,6 @@ public class Patient extends Person implements IPrintable {
 	}
 
 	public int getSocialNumber() {
-		//
 		return socialNumber;
 	}
 }

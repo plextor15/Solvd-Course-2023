@@ -1,8 +1,13 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Appointment {
 	private String date;
 	private Doctor doc;
+
+	private static final Logger LOGGER = LogManager.getLogger(Appointment.class);
 
 	public Appointment() {
 	}
@@ -11,7 +16,7 @@ public class Appointment {
 		this.date = date;
 		this.doc = doc;
 
-		System.out.println("Appointment with " + this.doc.toString() + " has been set to: " + this.date);
+		LOGGER.info("Appointment with " + this.doc.toString() + " has been set to: " + this.date);
 	}
 
 	public String getDate() {

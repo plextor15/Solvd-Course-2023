@@ -2,6 +2,8 @@ package com.solvd.laba.block01.oop_hospital;
 
 import com.solvd.laba.block01.oop_hospital.interfaces.IPrescribable;
 import com.solvd.laba.block01.oop_hospital.interfaces.IPrintable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -10,6 +12,8 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 	public final String speciality;
 	public ArrayList<Integer> assignedPatients;
 	public final boolean isAvailable = true;
+
+	private static final Logger LOGGER = LogManager.getLogger(Doctor.class);
 
 	public Doctor(String name, String surname, String speciality) {
 		super(name, surname);
@@ -69,7 +73,7 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		diagnose.treatment = treatment;
 
 		p.diagnosis = diagnose;
-		System.out.println(p.printOut() + " has been diagnosed with " + p.diagnosis.printOut());
+		LOGGER.info(p.printOut() + " has been diagnosed with " + p.diagnosis.printOut());
 	}
 
 	@Override
@@ -96,10 +100,10 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		prescription.medicines.add(med);
 		p.prescription = prescription;
 
-		System.out.println(this.printOut() + " prescribed to " + p + " :");
+		LOGGER.info(this.printOut() + " prescribed to " + p + " :");
 		for (Medicine m : prescription.medicines) {
-			System.out.println("    - " + m.name);
+			LOGGER.info("    - " + m.name);
 		}
-		System.out.println("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
+		LOGGER.info("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
 	}
 }
