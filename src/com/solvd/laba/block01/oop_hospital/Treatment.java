@@ -1,13 +1,16 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class Treatment {
+public class Treatment implements AutoCloseable {
 	public enum TypeOfTreatment {
 		STAYINHOSPITAL,
 		APPOINTMENTS
 	}
 
 	private TypeOfTreatment whatTreatment;
+	private static final Logger LOGGER = LogManager.getLogger(Treatment.class);
 
 	@Override
 	public String toString() {
@@ -17,6 +20,18 @@ public class Treatment {
 			return "appointments";
 		}
 		return "unknown treatment";
+	}
+
+	@Override
+	public void close() throws Exception {
+		throw new Exception("Treatment needed to be closed, because of wrong name!");
+	}
+
+	public Treatment() {
+	}
+
+	public Treatment(TypeOfTreatment t) {
+		this.whatTreatment = t;
 	}
 
 	public TypeOfTreatment getWhatTreatment() {
@@ -33,7 +48,11 @@ public class Treatment {
 	}
 
 	public void setWhatTreatment(TypeOfTreatment whatTreatment) {
-		this.whatTreatment = whatTreatment;
+		try (Treatment t = new Treatment(whatTreatment)) {
+			this.whatTreatment = t.whatTreatment;
+		} catch (Exception e) {
+			LOGGER.warn(e.getMessage());
+		}
 	}
 
 }

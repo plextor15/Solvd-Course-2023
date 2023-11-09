@@ -17,6 +17,10 @@ public class Patient extends Person implements IPrintable {
 	public Patient(String name, String surname, int age) {
 		super(name, surname);
 
+		if (age < 0) {
+			throw new RuntimeException("Age cannot be less than 0! Specified age=" + age);
+		}
+		
 		this.age = age;
 		this.socialNumber = new Random().nextInt(100000, 999999); //id number of citizen (PESEL)
 	}

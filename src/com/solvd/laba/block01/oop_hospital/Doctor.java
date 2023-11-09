@@ -6,11 +6,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Doctor extends Person implements IPrintable, IPrescribable {
 	public final String speciality;
-	public ArrayList<Integer> assignedPatients;
+	public List<Integer> assignedPatients;
 	public final boolean isAvailable = true;
 
 	private static final Logger LOGGER = LogManager.getLogger(Doctor.class);

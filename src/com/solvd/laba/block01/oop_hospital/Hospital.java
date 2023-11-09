@@ -43,17 +43,23 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 	}
 
 	public Doctor assignDoctor(Patient p) {
-		int i = 0;
+		int i;
 
-		for (Doctor d : doctors) {
-			if (d.isAvailable) {
-				i = doctors.indexOf(d);
-				d.assignedPatients.add(p.hashCode());
-				p.assignedDoctor = d.hashCode();
+		for (i = 0; i < doctors.size(); i++) {
+			if (doctors.get(i).isAvailable) {
+				doctors.get(i).assignedPatients.add(p.hashCode());
+				p.assignedDoctor = doctors.get(i).hashCode();
+				this.patients.add(p);
+
+				LOGGER.info(doctors.get(i).printOut() + "has been assigned to " + p.printOut());
+				break;
+			} else {
+				if (i == (doctors.size() - 1)) {
+					throw new RuntimeException("There is no doctor available!");
+				}
 			}
 		}
 
-		this.patients.add(p);
 		return doctors.get(i);
 	}
 

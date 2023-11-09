@@ -4,13 +4,13 @@ import com.solvd.laba.block01.oop_hospital.interfaces.IRoomOccupiable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class HospitalRoom implements IRoomOccupiable {
 	private final int number;
 	private final int maxBeds = 6;
 	private int freeBeds;
-	private ArrayList<Patient> patientsInRoom;
+	private List<Patient> patientsInRoom;
 
 	private static final Logger LOGGER = LogManager.getLogger(Doctor.class);
 

@@ -3,13 +3,14 @@ package com.solvd.laba.block01.oop_hospital;
 import com.solvd.laba.block01.oop_hospital.interfaces.IAppointable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class HealthcareEntity implements IAppointable {
 	public final String Name;
 
-	protected ArrayList<Patient> patients;
-	protected ArrayList<Doctor> doctors;
-	public ArrayList<Appointment> appointments;
+	protected List<Patient> patients;
+	protected List<Doctor> doctors;
+	public List<Appointment> appointments;
 
 	public HealthcareEntity(String name) {
 		this.Name = name;

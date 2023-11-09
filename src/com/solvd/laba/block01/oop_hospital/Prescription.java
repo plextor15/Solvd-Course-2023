@@ -1,10 +1,11 @@
 package com.solvd.laba.block01.oop_hospital;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Prescription {
-	public ArrayList<Medicine> medicines;
+	public List<Medicine> medicines;
 	public final int barCode;
 	public final Doctor doc;
 	public final int takeDays;
