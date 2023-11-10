@@ -7,6 +7,7 @@ logs/
 /out
 /.idea
 Solvd_Course.iml
+/src/META-INF
 
 ### Eclipse ###
 .apt_generated

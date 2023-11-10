@@ -23,8 +23,9 @@ public class Treatment implements AutoCloseable {
 	}
 
 	@Override
-	public void close() {
-		throw new RuntimeException("Treatment needed to be closed, because of wrong name!");
+	public void close() throws Exception {
+		//throw new RuntimeException("Treatment needed to be closed, because of wrong name!");
+		throw new Exception("Treatment needed to be closed, because of wrong name!");
 	}
 
 	public Treatment() {
@@ -50,7 +51,7 @@ public class Treatment implements AutoCloseable {
 	public void setWhatTreatment(TypeOfTreatment whatTreatment) {
 		try (Treatment t = new Treatment(whatTreatment)) {
 			this.whatTreatment = t.whatTreatment;
-		} catch (RuntimeException e) {
+		} catch (Exception e) {
 			LOGGER.warn(e.getMessage());
 		}
 	}
