@@ -65,12 +65,15 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		}
 		p.diagnosis = diagnose;
 
+		//try
 		if (p.diagnosis.disease.isDangerous) {
 			treatment.setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
 		} else {
 			treatment.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
 			this.givePrescription(p);
 		}
+		//catch
+		//finally?
 		diagnose.treatment = treatment;
 
 		p.diagnosis = diagnose;

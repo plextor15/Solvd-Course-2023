@@ -1,5 +1,6 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.exceptions.WrongTreatmentTypeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +25,8 @@ public class Treatment implements AutoCloseable {
 
 	@Override
 	public void close() throws Exception {
-		//throw new RuntimeException("Treatment needed to be closed, because of wrong name!");
-		throw new Exception("Treatment needed to be closed, because of wrong name!");
+		//Ending message here?
+		//throw new Exception("Treatment needed to be closed, because of wrong name!");
 	}
 
 	public Treatment() {
@@ -51,7 +52,7 @@ public class Treatment implements AutoCloseable {
 	public void setWhatTreatment(TypeOfTreatment whatTreatment) {
 		try (Treatment t = new Treatment(whatTreatment)) {
 			this.whatTreatment = t.whatTreatment;
-		} catch (Exception e) {
+		} catch (WrongTreatmentTypeException e) {
 			LOGGER.warn(e.getMessage());
 		}
 	}

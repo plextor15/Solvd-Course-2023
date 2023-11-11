@@ -1,5 +1,6 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.exceptions.NoAvailableDoctorException;
 import com.solvd.laba.block01.oop_hospital.interfaces.IAppointable;
 import com.solvd.laba.block01.oop_hospital.interfaces.ITreatable;
 import org.apache.logging.log4j.LogManager;
@@ -7,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public final class Hospital extends HealthcareEntity implements ITreatable, IAppointable {
 	private final int amountOfRooms;
-	private HospitalRoom[] hospitalRooms;
+	private HospitalRoom[] hospitalRooms;    //Some List here
 	private static int howManyHospitals = 0;
 
 	private static final Logger LOGGER = LogManager.getLogger(Hospital.class);
@@ -55,7 +56,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 				break;
 			} else {
 				if (i == (doctors.size() - 1)) {
-					throw new RuntimeException("There is no doctor available!");
+					throw new NoAvailableDoctorException("There is no doctor available!");
 				}
 			}
 		}
