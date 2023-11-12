@@ -2,11 +2,12 @@ package com.solvd.laba.block01.oop_hospital;
 
 import com.solvd.laba.block01.oop_hospital.exceptions.AgeBelowZeroException;
 import com.solvd.laba.block01.oop_hospital.interfaces.IPrintable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
 public class Patient extends Person implements IPrintable {
-
 	private int age;
 	private final int socialNumber;
 
@@ -14,20 +15,17 @@ public class Patient extends Person implements IPrintable {
 	public Diagnosis diagnosis;
 	public int assignedDoctor;
 	public Prescription prescription;
+	public StayInHospital stayInHospital;
+
+	private static final Logger LOGGER = LogManager.getLogger(Patient.class);
 
 	public Patient(String name, String surname, int age) {
 		super(name, surname);
 
-
 		try {
-			if (age < 0) {
-				throw new AgeBelowZeroException("Age cannot be less than 0! Specified age=" + age);
-			} else {
-				this.setAge(age);
-			}
+			this.setAge(age);
 		} catch (AgeBelowZeroException e) {
-			e.getMessage(); //LOGGGER
-			this.setAge(0);
+			LOGGER.warn(e.getMessage());
 		}
 
 		this.socialNumber = new Random().nextInt(100000, 999999); //id number of citizen (PESEL)
@@ -64,7 +62,8 @@ public class Patient extends Person implements IPrintable {
 
 	public void setAge(int age) throws AgeBelowZeroException {
 		if (age < 0) {
-			throw new AgeBelowZeroException("Age cannot be less than 0! Specified age=" + age);
+			this.age = 0;
+			throw new AgeBelowZeroException("Age cannot be less than 0! Rolling back to age=" + this.age);
 		}
 
 		this.age = age;

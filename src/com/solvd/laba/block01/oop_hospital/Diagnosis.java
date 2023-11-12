@@ -6,6 +6,11 @@ public class Diagnosis implements IPrintable {
 	public Disease disease;
 	public Treatment treatment;
 
+	public Diagnosis() {
+		this.disease = new Disease("-", false);
+		this.treatment = new Treatment();
+	}
+
 	@Override
 	public String toString() {
 		return disease.toString() + " - " + Treatment.printTreatmentType(this.treatment.getWhatTreatment());
@@ -13,6 +18,6 @@ public class Diagnosis implements IPrintable {
 
 	@Override
 	public String printOut() {
-		return this + " is required";
+		return this.toString() + " is required";
 	}
 }

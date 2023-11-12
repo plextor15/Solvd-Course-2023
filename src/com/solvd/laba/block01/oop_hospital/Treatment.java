@@ -24,16 +24,19 @@ public class Treatment implements AutoCloseable {
 	}
 
 	@Override
-	public void close() throws Exception {
-		//Ending message here?
-		//throw new Exception("Treatment needed to be closed, because of wrong name!");
+	public void close() {
+		LOGGER.info("Current treatment is set to " + this.toString());
 	}
 
 	public Treatment() {
 	}
 
 	public Treatment(TypeOfTreatment t) {
-		this.whatTreatment = t;
+		try (Treatment treat = new Treatment(t)) {
+			this.setWhatTreatment(treat.whatTreatment);
+		} catch (WrongTreatmentTypeException e) {
+			LOGGER.warn(e.getMessage());
+		}
 	}
 
 	public TypeOfTreatment getWhatTreatment() {
@@ -46,15 +49,15 @@ public class Treatment implements AutoCloseable {
 		} else if (t == TypeOfTreatment.APPOINTMENTS) {
 			return "appointments";
 		}
-		return "unknown treatment";
+		return "[unknown treatment]";
 	}
 
-	public void setWhatTreatment(TypeOfTreatment whatTreatment) {
-		try (Treatment t = new Treatment(whatTreatment)) {
-			this.whatTreatment = t.whatTreatment;
-		} catch (WrongTreatmentTypeException e) {
-			LOGGER.warn(e.getMessage());
+	public void setWhatTreatment(TypeOfTreatment whatTreatment) throws WrongTreatmentTypeException {
+		if (whatTreatment != TypeOfTreatment.STAYINHOSPITAL
+				&& whatTreatment != TypeOfTreatment.APPOINTMENTS) {
+			this.whatTreatment = TypeOfTreatment.STAYINHOSPITAL;
+			throw new WrongTreatmentTypeException("Wrong type of treatment! Setting type to " + this.toString());
 		}
+		this.whatTreatment = whatTreatment;
 	}
-
 }

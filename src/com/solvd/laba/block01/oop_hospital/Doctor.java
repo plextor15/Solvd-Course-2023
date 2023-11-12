@@ -1,5 +1,7 @@
 package com.solvd.laba.block01.oop_hospital;
 
+import com.solvd.laba.block01.oop_hospital.exceptions.StayInHospitalTooShortException;
+import com.solvd.laba.block01.oop_hospital.exceptions.WrongTreatmentTypeException;
 import com.solvd.laba.block01.oop_hospital.interfaces.IPrescribable;
 import com.solvd.laba.block01.oop_hospital.interfaces.IPrintable;
 import org.apache.logging.log4j.LogManager;
@@ -47,42 +49,41 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 	}
 
 	public void diagnosePatient(Patient p) {
-		Diagnosis diagnose = new Diagnosis();
-		Treatment treatment = new Treatment();
+		p.diagnosis = new Diagnosis();
 
 		final Disease flu = new Disease("Flu", false);
-		final Disease unknkownDisease = new Disease("Unknown", true);
+		final Disease unknownDisease = new Disease("Unknown", true);
 
 		switch (p.symptoms.description) {
 			case "Throat ache":
-				diagnose.disease = flu;
+				p.diagnosis.disease = flu;
 				break;
 			case "Pain in chest":
 				//...
 				break;
 			default:
-				diagnose.disease = unknkownDisease;
+				p.diagnosis.disease = unknownDisease;
 		}
-		p.diagnosis = diagnose;
 
-		//try
-		if (p.diagnosis.disease.isDangerous) {
-			treatment.setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
-		} else {
-			treatment.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
-			this.givePrescription(p);
+		try {
+			if (p.diagnosis.disease.isDangerous) {
+				p.diagnosis.treatment.setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
+				p.stayInHospital = new StayInHospital();
+				p.stayInHospital.setAmountOfDays(p.symptoms.getAmountOfPain() * 2);
+			} else {
+				p.diagnosis.treatment.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
+				this.givePrescription(p);
+			}
+		} catch (WrongTreatmentTypeException | StayInHospitalTooShortException e) {
+			LOGGER.warn(e.getMessage());
 		}
-		//catch
-		//finally?
-		diagnose.treatment = treatment;
 
-		p.diagnosis = diagnose;
 		LOGGER.info(p.printOut() + " has been diagnosed with " + p.diagnosis.printOut());
 	}
 
 	@Override
 	public void givePrescription(Patient p) {
-		int days = p.symptoms.amountOfPain;
+		int days = p.symptoms.getAmountOfPain();
 		Medicine med = new Medicine("", 0);
 		Prescription prescription;
 
