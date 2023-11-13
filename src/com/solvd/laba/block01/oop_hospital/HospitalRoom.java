@@ -4,6 +4,7 @@ import com.solvd.laba.block01.oop_hospital.interfaces.IRoomOccupiable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HospitalRoom implements IRoomOccupiable {
@@ -17,6 +18,7 @@ public class HospitalRoom implements IRoomOccupiable {
 	public HospitalRoom(int number) {
 		this.number = number;
 		this.freeBeds = maxBeds;
+		this.patientsInRoom = new ArrayList<Patient>();
 	}
 
 	@Override

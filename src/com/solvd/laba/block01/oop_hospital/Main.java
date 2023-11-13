@@ -24,6 +24,9 @@ Requirements:
 - Handle exceptions in 2 ways: with throws and try/catch
 - Use try-catch with resources.
 - Add Logger usage. Log messages to the console and file file. Replace System.out calls with Loggers across entire project
+
+- Add 5 collections to the hierarchy.
+- Create custom LinkedList with generic and apply it in your classes structure.
 */
 
 package com.solvd.laba.block01.oop_hospital;
@@ -53,5 +56,21 @@ public class Main {
 		hospital.provideTreatment(sickPatient);
 
 		LOGGER.info("\n-- FINISH --");
+
+		//Testing
+		/*Doctor doc2 = new Doctor("Michael", "Smith", "laryngologist");
+		Doctor doc3 = new Doctor("MMMM", "SSSSS", "laryngologist");
+		Doctor doc4 = new Doctor("OOOOO", "BBBBBBB", "laryngologist");
+		hospital.doctors.add(doc2);
+		hospital.doctors.add(doc3);
+		hospital.doctors.add(doc4);
+
+		hospital.doctors.printOut();
+		LOGGER.info(hospital.doctors.size());
+
+		LOGGER.info(hospital.doctors.get(2) + " - " + hospital.doctors.size());
+		hospital.doctors.remove(2);
+		LOGGER.info(hospital.doctors.size());
+		hospital.doctors.printOut();*/
 	}
 }

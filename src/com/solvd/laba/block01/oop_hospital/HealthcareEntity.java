@@ -9,14 +9,14 @@ public abstract class HealthcareEntity implements IAppointable {
 	public final String Name;
 
 	protected List<Patient> patients;
-	protected List<Doctor> doctors;
+	protected CustomLinkedList<Doctor> doctors;
 	public List<Appointment> appointments;
 
 	public HealthcareEntity(String name) {
 		this.Name = name;
 
 		this.patients = new ArrayList<Patient>();
-		this.doctors = new ArrayList<Doctor>();
+		this.doctors = new CustomLinkedList<Doctor>();
 		this.appointments = new ArrayList<Appointment>();
 	}
 

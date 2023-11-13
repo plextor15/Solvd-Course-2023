@@ -6,9 +6,11 @@ import com.solvd.laba.block01.oop_hospital.interfaces.ITreatable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashSet;
+
 public final class Hospital extends HealthcareEntity implements ITreatable, IAppointable {
 	private final int amountOfRooms;
-	private HospitalRoom[] hospitalRooms;    //Some List here
+	private HashSet<HospitalRoom> hospitalRooms;
 	private static int howManyHospitals = 0;
 
 	private static final Logger LOGGER = LogManager.getLogger(Hospital.class);
@@ -21,12 +23,11 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		super(hospitalName);
 		this.amountOfRooms = amountOfRooms;
 
-		HospitalRoom[] rooms = new HospitalRoom[amountOfRooms];
+		this.hospitalRooms = new HashSet<HospitalRoom>();
 		for (int i = 0; i < amountOfRooms; i++) {
 			HospitalRoom hospitalRoom = new HospitalRoom(i);
-			rooms[i] = hospitalRoom;
+			hospitalRooms.add(hospitalRoom);
 		}
-		this.hospitalRooms = rooms;
 	}
 
 	@Override
@@ -93,9 +94,15 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		if (p.diagnosis.treatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
 			this.keepPatientInHospital(p);
 		} else {
-			for (Doctor d : this.doctors) {
+			/*for (Doctor d : this.doctors) {
 				if (p.assignedDoctor == d.hashCode()) {
 					this.makeAppointment(p, d);
+					break;
+				}
+			}*/
+			for (int i = 0; i < this.doctors.size(); i++) {
+				if (p.assignedDoctor == this.doctors.get(i).hashCode()) {
+					this.makeAppointment(p, this.doctors.get(i));
 					break;
 				}
 			}
