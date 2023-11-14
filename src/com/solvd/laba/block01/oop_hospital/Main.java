@@ -56,21 +56,5 @@ public class Main {
 		hospital.provideTreatment(sickPatient);
 
 		LOGGER.info("\n-- FINISH --");
-
-		//Testing
-		/*Doctor doc2 = new Doctor("Michael", "Smith", "laryngologist");
-		Doctor doc3 = new Doctor("MMMM", "SSSSS", "laryngologist");
-		Doctor doc4 = new Doctor("OOOOO", "BBBBBBB", "laryngologist");
-		hospital.doctors.add(doc2);
-		hospital.doctors.add(doc3);
-		hospital.doctors.add(doc4);
-
-		hospital.doctors.printOut();
-		LOGGER.info(hospital.doctors.size());
-
-		LOGGER.info(hospital.doctors.get(2) + " - " + hospital.doctors.size());
-		hospital.doctors.remove(2);
-		LOGGER.info(hospital.doctors.size());
-		hospital.doctors.printOut();*/
 	}
 }

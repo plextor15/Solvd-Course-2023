@@ -79,6 +79,7 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		}
 
 		LOGGER.info(p.printOut() + " has been diagnosed with " + p.diagnosis.printOut());
+		LOGGER.info(p.prescription.printOut(p));
 	}
 
 	@Override
@@ -105,10 +106,10 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		prescription.medicines.add(med);
 		p.prescription = prescription;
 
-		LOGGER.info(this.printOut() + " prescribed to " + p + " :");
-		for (Medicine m : prescription.medicines) {
-			LOGGER.info("    - " + m.name);
-		}
-		LOGGER.info("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
+//		LOGGER.info(this.printOut() + " prescribed to " + p + " :");
+//		for (Medicine m : prescription.medicines) {
+//			LOGGER.info("    - " + m.name);
+//		}
+//		LOGGER.info("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
 	}
 }

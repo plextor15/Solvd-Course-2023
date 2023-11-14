@@ -1,6 +1,6 @@
 package com.solvd.laba.block01.oop_hospital;
 
-import com.solvd.laba.block01.oop_hospital.exceptions.AmountOfPainBelowRangeException;
+import com.solvd.laba.block01.oop_hospital.exceptions.AmountOfPainOutOfRangeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,19 +14,19 @@ public class Symptoms {
 
 		try {
 			this.setAmountOfPain(amountOfPain);
-		} catch (AmountOfPainBelowRangeException e) {
+		} catch (AmountOfPainOutOfRangeException e) {
 			LOGGER.warn(e.getMessage());
 		}
 	}
 
-	public void setAmountOfPain(int amountOfPain) throws AmountOfPainBelowRangeException {
+	public void setAmountOfPain(int amountOfPain) throws AmountOfPainOutOfRangeException {
 		if (amountOfPain < 1) {
 			this.amountOfPain = 1;
-			throw new AmountOfPainBelowRangeException("Specified amount of pain is out of range! Trimming to " + this.amountOfPain);
+			throw new AmountOfPainOutOfRangeException("Specified amount of pain is out of range! Trimming to " + this.amountOfPain);
 		}
 		if (amountOfPain > 10) {
 			this.amountOfPain = 10;
-			throw new AmountOfPainBelowRangeException("Specified amount of pain is too high! Trimming to " + this.amountOfPain);
+			throw new AmountOfPainOutOfRangeException("Specified amount of pain is too high! Trimming to " + this.amountOfPain);
 		}
 
 		this.amountOfPain = amountOfPain;

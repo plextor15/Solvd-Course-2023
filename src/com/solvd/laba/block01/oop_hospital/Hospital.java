@@ -94,12 +94,6 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		if (p.diagnosis.treatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
 			this.keepPatientInHospital(p);
 		} else {
-			/*for (Doctor d : this.doctors) {
-				if (p.assignedDoctor == d.hashCode()) {
-					this.makeAppointment(p, d);
-					break;
-				}
-			}*/
 			for (int i = 0; i < this.doctors.size(); i++) {
 				if (p.assignedDoctor == this.doctors.get(i).hashCode()) {
 					this.makeAppointment(p, this.doctors.get(i));

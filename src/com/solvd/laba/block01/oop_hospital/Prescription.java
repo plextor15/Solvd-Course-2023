@@ -20,4 +20,14 @@ public class Prescription {
 
 		medicines = new ArrayList<Medicine>();
 	}
+
+
+	public String printOut(Patient p) {
+		String print = new String(this.doc.printOut() + " prescribed to " + p + " :\n");
+		for (Medicine m : this.medicines) {
+			print += "    - " + m.name + "\n";
+		}
+		print += "Patient should take " + this.takePillsPerDay + " per day for the next " + this.takeDays + " days.";
+		return print;
+	}
 }
