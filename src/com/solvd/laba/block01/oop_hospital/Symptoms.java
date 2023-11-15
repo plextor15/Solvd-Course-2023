@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Symptoms {
-	public String description;
+	private String description;
 	private int amountOfPain;
 	private static final Logger LOGGER = LogManager.getLogger(Symptoms.class);
 
@@ -17,6 +17,14 @@ public class Symptoms {
 		} catch (AmountOfPainOutOfRangeException e) {
 			LOGGER.warn(e.getMessage());
 		}
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setAmountOfPain(int amountOfPain) throws AmountOfPainOutOfRangeException {

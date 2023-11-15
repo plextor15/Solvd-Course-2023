@@ -1,8 +1,8 @@
 package com.solvd.laba.block01.oop_hospital;
 
 public class Medicine {
-	public final String name;
-	public final int pillsNumber;
+	private final String name;
+	private final int pillsNumber;
 
 	public Medicine(String name, int pillsNumber) {
 		this.name = name;
@@ -32,5 +32,13 @@ public class Medicine {
 		int result = name.hashCode();
 		result = 31 * result + pillsNumber;
 		return result;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPillsNumber() {
+		return pillsNumber;
 	}
 }

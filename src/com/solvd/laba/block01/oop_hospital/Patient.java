@@ -70,7 +70,7 @@ public class Patient extends Person implements IPrintable {
 	}
 
 	public Treatment whatTreatment() {
-		return this.diagnosis.treatment;
+		return this.diagnosis.getTreatment();
 	}
 
 	public int getSocialNumber() {

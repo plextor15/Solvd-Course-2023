@@ -44,7 +44,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Hospital hospital = new Hospital("UCLA Medical Center", 10);
-		Doctor doc = new Doctor("John", "Mitchell", "laryngologist");
+		Doctor doc = new Doctor("John", "Mitchell", "laryngologist", "27-11-2023", true);
 		hospital.doctors.add(doc);
 
 		Patient sickPatient = new Patient("Andrew", "Kowalsky", 30);

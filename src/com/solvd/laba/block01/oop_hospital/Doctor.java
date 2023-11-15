@@ -12,16 +12,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Doctor extends Person implements IPrintable, IPrescribable {
-	public final String speciality;
-	public List<Integer> assignedPatients;
-	public final boolean isAvailable = true;
+	private final String speciality;
+	private List<Integer> assignedPatients;
+	private final boolean isAvailable;
+	private String availableDate;
 
 	private static final Logger LOGGER = LogManager.getLogger(Doctor.class);
 
-	public Doctor(String name, String surname, String speciality) {
+	public Doctor(String name, String surname, String speciality, String availableDate, boolean isAvailable) {
 		super(name, surname);
 		this.speciality = speciality;
 		this.assignedPatients = new ArrayList<>();
+		this.availableDate = availableDate;
+		this.isAvailable = isAvailable;
 	}
 
 	@Override
@@ -48,30 +51,46 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		return "doctor " + this;
 	}
 
+	public String getSpeciality() {
+		return speciality;
+	}
+
+	public void addToAssignedPatients(Patient p) {
+		this.assignedPatients.add(p.hashCode());
+	}
+
+	public boolean getAvailability() {
+		return this.isAvailable;
+	}
+
+	public String getAvailableDay() {
+		return availableDate;
+	}
+
 	public void diagnosePatient(Patient p) {
 		p.diagnosis = new Diagnosis();
 
 		final Disease flu = new Disease("Flu", false);
 		final Disease unknownDisease = new Disease("Unknown", true);
 
-		switch (p.symptoms.description) {
+		switch (p.symptoms.getDescription()) {
 			case "Throat ache":
-				p.diagnosis.disease = flu;
+				p.diagnosis.setDisease(flu);
 				break;
 			case "Pain in chest":
 				//...
 				break;
 			default:
-				p.diagnosis.disease = unknownDisease;
+				p.diagnosis.setDisease(unknownDisease);
 		}
 
 		try {
-			if (p.diagnosis.disease.isDangerous) {
-				p.diagnosis.treatment.setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
+			if (p.diagnosis.getDisease().isDangerous()) {
+				p.diagnosis.getTreatment().setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
 				p.stayInHospital = new StayInHospital();
 				p.stayInHospital.setAmountOfDays(p.symptoms.getAmountOfPain() * 2);
 			} else {
-				p.diagnosis.treatment.setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
+				p.diagnosis.getTreatment().setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
 				this.givePrescription(p);
 			}
 		} catch (WrongTreatmentTypeException | StayInHospitalTooShortException e) {
@@ -91,7 +110,7 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		final Medicine gripex = new Medicine("Gripex", 15);
 		final Medicine unknown = new Medicine("Unknown", 0);
 
-		switch (p.diagnosis.disease.name) {
+		switch (p.diagnosis.getDisease().getName()) {
 			case "Flu":
 				med = gripex;
 				break;
@@ -102,14 +121,8 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 				med = unknown;
 		}
 
-		prescription = new Prescription(this, days, med.pillsNumber / days);
-		prescription.medicines.add(med);
+		prescription = new Prescription(this, days, med.getPillsNumber() / days);
+		prescription.addMedicines(med);
 		p.prescription = prescription;
-
-//		LOGGER.info(this.printOut() + " prescribed to " + p + " :");
-//		for (Medicine m : prescription.medicines) {
-//			LOGGER.info("    - " + m.name);
-//		}
-//		LOGGER.info("Patient should take " + prescription.takePillsPerDay + " per day for the next " + prescription.takeDays + " days.");
 	}
 }

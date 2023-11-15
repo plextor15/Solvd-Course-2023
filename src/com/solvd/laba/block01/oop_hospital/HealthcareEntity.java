@@ -10,7 +10,7 @@ public abstract class HealthcareEntity implements IAppointable {
 
 	protected List<Patient> patients;
 	protected CustomLinkedList<Doctor> doctors;
-	public List<Appointment> appointments;
+	protected List<Appointment> appointments;
 
 	public HealthcareEntity(String name) {
 		this.Name = name;

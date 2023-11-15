@@ -48,8 +48,8 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		int i;
 
 		for (i = 0; i < doctors.size(); i++) {
-			if (doctors.get(i).isAvailable) {
-				doctors.get(i).assignedPatients.add(p.hashCode());
+			if (doctors.get(i).getAvailability()) {
+				doctors.get(i).addToAssignedPatients(p);
 				p.assignedDoctor = doctors.get(i).hashCode();
 				this.patients.add(p);
 
@@ -66,7 +66,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 	}
 
 	private String whenDoctorAvailable(Doctor d) {
-		final String appointmentDate = "20-11-2023";
+		final String appointmentDate = d.getAvailableDay();
 		return appointmentDate;
 	}
 
@@ -91,7 +91,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 
 	@Override
 	public void provideTreatment(Patient p) {
-		if (p.diagnosis.treatment.getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
+		if (p.diagnosis.getTreatment().getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
 			this.keepPatientInHospital(p);
 		} else {
 			for (int i = 0; i < this.doctors.size(); i++) {

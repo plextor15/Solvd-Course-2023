@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Prescription {
-	public List<Medicine> medicines;
-	public final int barCode;
-	public final Doctor doc;
-	public final int takeDays;
-	public final int takePillsPerDay;
+	private List<Medicine> medicines;
+	private final int barCode;
+	private final Doctor doc;
+	private final int takeDays;
+	private final int takePillsPerDay;
 
 
 	public Prescription(Doctor doc, int days, int pills) {
@@ -21,11 +21,14 @@ public class Prescription {
 		medicines = new ArrayList<Medicine>();
 	}
 
+	public void addMedicines(Medicine m) {
+		this.medicines.add(m);
+	}
 
 	public String printOut(Patient p) {
 		String print = new String(this.doc.printOut() + " prescribed to " + p + " :\n");
 		for (Medicine m : this.medicines) {
-			print += "    - " + m.name + "\n";
+			print += "    - " + m.getName() + "\n";
 		}
 		print += "Patient should take " + this.takePillsPerDay + " per day for the next " + this.takeDays + " days.";
 		return print;
