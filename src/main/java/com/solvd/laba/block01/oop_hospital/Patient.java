@@ -11,11 +11,11 @@ public class Patient extends Person implements IPrintable {
 	private int age;
 	private final int socialNumber;
 
-	public Symptoms symptoms;
-	public Diagnosis diagnosis;
-	public int assignedDoctor;
-	public Prescription prescription;
-	public StayInHospital stayInHospital;
+	private Symptoms symptoms;
+	private Diagnosis diagnosis;
+	private int assignedDoctor;
+	private Prescription prescription;
+	private StayInHospital stayInHospital;
 
 	private static final Logger LOGGER = LogManager.getLogger(Patient.class);
 
@@ -75,5 +75,45 @@ public class Patient extends Person implements IPrintable {
 
 	public int getSocialNumber() {
 		return socialNumber;
+	}
+
+	public Symptoms getSymptoms() {
+		return symptoms;
+	}
+
+	public void setSymptoms(Symptoms symptoms) {
+		this.symptoms = symptoms;
+	}
+
+	public Diagnosis getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(Diagnosis diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+
+	public int getAssignedDoctor() {
+		return assignedDoctor;
+	}
+
+	public void setAssignedDoctor(int assignedDoctor) {
+		this.assignedDoctor = assignedDoctor;
+	}
+
+	public Prescription getPrescription() {
+		return prescription;
+	}
+
+	public void setPrescription(Prescription prescription) {
+		this.prescription = prescription;
+	}
+
+	public StayInHospital getStayInHospital() {
+		return stayInHospital;
+	}
+
+	public void setStayInHospital(StayInHospital stayInHospital) {
+		this.stayInHospital = stayInHospital;
 	}
 }

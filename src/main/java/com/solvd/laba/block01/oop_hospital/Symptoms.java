@@ -5,6 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Symptoms {
+	//constants
+
 	private String description;
 	private int amountOfPain;
 	private static final Logger LOGGER = LogManager.getLogger(Symptoms.class);

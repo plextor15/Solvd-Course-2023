@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HospitalRoom implements IRoomOccupiable {
 	private final int number;
-	private final int maxBeds = 6;
+	private final static int MAXBEDS = 6;
 	private int freeBeds;
 	private List<Patient> patientsInRoom;
 
@@ -17,7 +17,7 @@ public class HospitalRoom implements IRoomOccupiable {
 
 	public HospitalRoom(int number) {
 		this.number = number;
-		this.freeBeds = maxBeds;
+		this.freeBeds = MAXBEDS;
 		this.patientsInRoom = new ArrayList<Patient>();
 	}
 
@@ -46,7 +46,7 @@ public class HospitalRoom implements IRoomOccupiable {
 	}
 
 	public int getMaxBeds() {
-		return maxBeds;
+		return MAXBEDS;
 	}
 
 	public int getFreeBeds() {

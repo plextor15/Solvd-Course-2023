@@ -13,6 +13,8 @@
         <!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
         <log4j-version>2.21.1</log4j-version>
         <maven-compiler-version>3.11.0</maven-compiler-version>
+
+        <exec-maven-version>3.1.1</exec-maven-version>
     </properties>
 
     <dependencies>
@@ -33,17 +35,43 @@
 
     <build>
         <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven-compiler-version}</version>
-          <configuration>
-            <!-- put your configurations here -->
-            <source>11</source>
-            <target>11</target>
-          </configuration>
-        </plugin>
-      </plugins>
+
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>${maven-compiler-version}</version>
+              <configuration>
+                <!-- put your configurations here -->
+                <source>11</source>
+                <target>11</target>
+              </configuration>
+            </plugin>
+
+            <!-- https://www.mojohaus.org/exec-maven-plugin/usage.html -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-version}</version>
+                <executions>
+                    <execution>
+                        <!-- ... -->
+                        <goals>
+                            <!-- <goal>exec</goal>-->
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <mainClass>com.solvd.laba.block01.oop_hospital.Main</mainClass>
+                    <arguments>
+                        <!-- <argument>-X</argument> -->
+                        <!-- <argument>myproject:dist</argument> -->
+                        <!-- ... -->
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>

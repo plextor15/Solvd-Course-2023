@@ -48,7 +48,7 @@ public class Main {
 		hospital.doctors.add(doc);
 
 		Patient sickPatient = new Patient("Andrew", "Kowalsky", 30);
-		sickPatient.symptoms = new Symptoms("Throat ache", 4);
+		sickPatient.setSymptoms(new Symptoms("Throat ache", 4));
 
 
 		hospital.welcomeMessage();

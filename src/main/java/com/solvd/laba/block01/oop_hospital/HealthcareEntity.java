@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class HealthcareEntity implements IAppointable {
-	public final String Name;
+	protected final String name;
 
 	protected List<Patient> patients;
 	protected CustomLinkedList<Doctor> doctors;
 	protected List<Appointment> appointments;
 
 	public HealthcareEntity(String name) {
-		this.Name = name;
+		this.name = name;
 
 		this.patients = new ArrayList<Patient>();
 		this.doctors = new CustomLinkedList<Doctor>();

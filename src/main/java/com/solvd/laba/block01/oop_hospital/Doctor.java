@@ -68,49 +68,49 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 	}
 
 	public void diagnosePatient(Patient p) {
-		p.diagnosis = new Diagnosis();
+		p.setDiagnosis(new Diagnosis());
 
 		final Disease flu = new Disease("Flu", false);
 		final Disease unknownDisease = new Disease("Unknown", true);
 
-		switch (p.symptoms.getDescription()) {
+		switch (p.getSymptoms().getDescription()) {
 			case "Throat ache":
-				p.diagnosis.setDisease(flu);
+				p.getDiagnosis().setDisease(flu);
 				break;
 			case "Pain in chest":
 				//...
 				break;
 			default:
-				p.diagnosis.setDisease(unknownDisease);
+				p.getDiagnosis().setDisease(unknownDisease);
 		}
 
 		try {
-			if (p.diagnosis.getDisease().isDangerous()) {
-				p.diagnosis.getTreatment().setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
-				p.stayInHospital = new StayInHospital();
-				p.stayInHospital.setAmountOfDays(p.symptoms.getAmountOfPain() * 2);
+			if (p.getDiagnosis().getDisease().isDangerous()) {
+				p.getDiagnosis().getTreatment().setWhatTreatment(Treatment.TypeOfTreatment.STAYINHOSPITAL);
+				p.setStayInHospital(new StayInHospital());
+				p.getStayInHospital().setAmountOfDays(p.getSymptoms().getAmountOfPain() * 2);
 			} else {
-				p.diagnosis.getTreatment().setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
+				p.getDiagnosis().getTreatment().setWhatTreatment(Treatment.TypeOfTreatment.APPOINTMENTS);
 				this.givePrescription(p);
 			}
 		} catch (WrongTreatmentTypeException | StayInHospitalTooShortException e) {
 			LOGGER.warn(e.getMessage());
 		}
 
-		LOGGER.info(p.printOut() + " has been diagnosed with " + p.diagnosis.printOut());
-		LOGGER.info(p.prescription.printOut(p));
+		LOGGER.info(p.printOut() + " has been diagnosed with " + p.getDiagnosis().printOut());
+		LOGGER.info(p.getPrescription().printOut(p));
 	}
 
 	@Override
 	public void givePrescription(Patient p) {
-		int days = p.symptoms.getAmountOfPain();
+		int days = p.getSymptoms().getAmountOfPain();
 		Medicine med = new Medicine("", 0);
 		Prescription prescription;
 
 		final Medicine gripex = new Medicine("Gripex", 15);
 		final Medicine unknown = new Medicine("Unknown", 0);
 
-		switch (p.diagnosis.getDisease().getName()) {
+		switch (p.getDiagnosis().getDisease().getName()) {
 			case "Flu":
 				med = gripex;
 				break;
@@ -123,6 +123,6 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 
 		prescription = new Prescription(this, days, med.getPillsNumber() / days);
 		prescription.addMedicines(med);
-		p.prescription = prescription;
+		p.setPrescription(prescription);
 	}
 }

@@ -41,4 +41,8 @@ public class Disease {
 	public boolean isDangerous() {
 		return isDangerous;
 	}
+
+	public void setDangerous(boolean dangerous) {
+		isDangerous = dangerous;
+	}
 }

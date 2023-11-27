@@ -32,7 +32,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 
 	@Override
 	public String toString() {
-		return this.Name;
+		return this.name;
 	}
 
 	public int getAmountOfRooms() {
@@ -50,7 +50,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 		for (i = 0; i < doctors.size(); i++) {
 			if (doctors.get(i).getAvailability()) {
 				doctors.get(i).addToAssignedPatients(p);
-				p.assignedDoctor = doctors.get(i).hashCode();
+				p.setAssignedDoctor(doctors.get(i).hashCode());
 				this.patients.add(p);
 
 				LOGGER.info(doctors.get(i).printOut() + "has been assigned to " + p.printOut());
@@ -91,11 +91,11 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 
 	@Override
 	public void provideTreatment(Patient p) {
-		if (p.diagnosis.getTreatment().getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
+		if (p.getDiagnosis().getTreatment().getWhatTreatment() == Treatment.TypeOfTreatment.STAYINHOSPITAL) {
 			this.keepPatientInHospital(p);
 		} else {
 			for (int i = 0; i < this.doctors.size(); i++) {
-				if (p.assignedDoctor == this.doctors.get(i).hashCode()) {
+				if (p.getAssignedDoctor() == this.doctors.get(i).hashCode()) {
 					this.makeAppointment(p, this.doctors.get(i));
 					break;
 				}
