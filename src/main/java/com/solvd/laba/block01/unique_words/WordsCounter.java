@@ -10,6 +10,7 @@ public class WordsCounter {
 
 	public WordsCounter(String content){
 		this.setAllWords(content);
+		this.countWords();
 	}
 
 	public void setAllWords(String content) {
