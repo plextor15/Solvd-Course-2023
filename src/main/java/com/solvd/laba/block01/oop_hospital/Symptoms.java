@@ -5,7 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Symptoms {
-	//constants
+	private final int MINPAIN = 1;
+	private final int MAXPAIN = 10;
 
 	private String description;
 	private int amountOfPain;
@@ -30,12 +31,12 @@ public class Symptoms {
 	}
 
 	public void setAmountOfPain(int amountOfPain) throws AmountOfPainOutOfRangeException {
-		if (amountOfPain < 1) {
-			this.amountOfPain = 1;
+		if (amountOfPain < MINPAIN) {
+			this.amountOfPain = MINPAIN;
 			throw new AmountOfPainOutOfRangeException("Specified amount of pain is out of range! Trimming to " + this.amountOfPain);
 		}
-		if (amountOfPain > 10) {
-			this.amountOfPain = 10;
+		if (amountOfPain > MAXPAIN) {
+			this.amountOfPain = MAXPAIN;
 			throw new AmountOfPainOutOfRangeException("Specified amount of pain is too high! Trimming to " + this.amountOfPain);
 		}
 

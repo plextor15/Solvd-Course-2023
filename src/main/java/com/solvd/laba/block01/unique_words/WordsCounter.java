@@ -2,13 +2,14 @@ package com.solvd.laba.block01.unique_words;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WordsCounter {
 	private String[] allWords;
-	private LinkedHashMap<String, Integer> words = new LinkedHashMap<String, Integer>();
+	private HashMap<String, Integer> words = new HashMap<String, Integer>();
 
-	public WordsCounter(String content){
+	public WordsCounter(String content) {
 		this.setAllWords(content);
 		this.countWords();
 	}
@@ -18,29 +19,23 @@ public class WordsCounter {
 		this.allWords = StringUtils.split(content.toLowerCase());
 	}
 
-	public void countWords(){
-//		words = new LinkedHashMap<String, Integer>();
-
+	public void countWords() {
 		for (String w : allWords) {
-			if (this.words.containsKey(w)){
-				this.words.replace(w, this.words.get(w)+1);
+			if (this.words.containsKey(w)) {
+				this.words.replace(w, this.words.get(w) + 1);
 			} else {
-				this.words.put(w,1);
+				this.words.put(w, 1);
 			}
 		}
 	}
 
-	public int uniqueWordsAmount(){
+	public int uniqueWordsAmount() {
 		return this.words.size();
 	}
 
 	@Override
 	public String toString() {
 		String out = "";
-
-//		for (String s : words) {
-//			out = out.concat(s + "\n");
-//		}
 
 		for (Map.Entry<String, Integer> entry : this.words.entrySet()) {
 			String key = entry.getKey();

@@ -6,9 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class StayInHospital {
+	private static final Logger LOGGER = LogManager.getLogger(StayInHospital.class);
+	private final int MINDAYS = 1;
+
 	private int amountOfDays;
 	private int roomNumber;
-	private static final Logger LOGGER = LogManager.getLogger(StayInHospital.class);
 
 	public StayInHospital(int amountOfDays, int roomNumber) {
 		try {
@@ -33,8 +35,8 @@ public class StayInHospital {
 	}
 
 	public void setAmountOfDays(int amountOfDays) throws StayInHospitalTooShortException {
-		if (amountOfDays < 1) {
-			this.amountOfDays = 1;
+		if (amountOfDays < MINDAYS) {
+			this.amountOfDays = MINDAYS;
 			throw new StayInHospitalTooShortException("Stay in hospital must last at least 1 day!");
 		}
 		this.amountOfDays = amountOfDays;

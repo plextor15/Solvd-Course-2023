@@ -23,7 +23,6 @@ public class Main {
 
 		try {
 			fileContent = FileUtils.readFileToString(new File(inputFilePath), "UTF-8");
-			//System.out.println("File Content:\n" + fileContent);
 
 			WordsCounter wc = new WordsCounter(fileContent);
 			LOGGER.info(wc.toString());
@@ -32,10 +31,9 @@ public class Main {
 				File outputFile = new File(outputFilePath);
 				FileUtils.touch(outputFile);
 				FileUtils.writeStringToFile(outputFile, wc.toString(), "UTF-8");
-			} catch (IOException e){
+			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
-
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
