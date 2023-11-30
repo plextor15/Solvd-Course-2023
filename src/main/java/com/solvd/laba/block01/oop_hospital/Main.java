@@ -32,6 +32,7 @@ Requirements:
 package com.solvd.laba.block01.oop_hospital;
 
 
+import com.solvd.laba.block01.oop_hospital.exceptions.AmountOfPainOutOfRangeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,7 +43,7 @@ public class Main {
 
 	private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws AmountOfPainOutOfRangeException {
 		Hospital hospital = new Hospital("UCLA Medical Center", 10);
 		Doctor doc = new Doctor("John", "Mitchell", "laryngologist", "27-11-2023", true);
 		hospital.doctors.add(doc);

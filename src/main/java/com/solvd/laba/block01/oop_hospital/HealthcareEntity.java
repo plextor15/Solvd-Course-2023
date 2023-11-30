@@ -20,7 +20,5 @@ public abstract class HealthcareEntity implements IAppointable {
 		this.appointments = new ArrayList<Appointment>();
 	}
 
-	public void welcomeMessage() {
-		System.out.println("Welcome");
-	}
+	public abstract void welcomeMessage();
 }

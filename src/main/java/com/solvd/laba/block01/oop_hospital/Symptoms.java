@@ -12,14 +12,15 @@ public class Symptoms {
 	private int amountOfPain;
 	private static final Logger LOGGER = LogManager.getLogger(Symptoms.class);
 
-	public Symptoms(String description, int amountOfPain) {
+	public Symptoms(String description, int amountOfPain) throws AmountOfPainOutOfRangeException {
 		this.description = description;
 
-		try {
-			this.setAmountOfPain(amountOfPain);
-		} catch (AmountOfPainOutOfRangeException e) {
-			LOGGER.warn(e.getMessage());
-		}
+		this.setAmountOfPain(amountOfPain);
+//		try {
+//			this.setAmountOfPain(amountOfPain);
+//		} catch (AmountOfPainOutOfRangeException e) {
+//			LOGGER.warn(e.getMessage());
+//		}
 	}
 
 	public String getDescription() {

@@ -10,5 +10,7 @@ public abstract class Person {
 	}
 
 	@Override
-	public abstract String toString();
+	public String toString() {
+		return this.name;
+	}
 }

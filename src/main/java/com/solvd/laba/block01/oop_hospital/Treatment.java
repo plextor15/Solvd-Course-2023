@@ -52,7 +52,7 @@ public class Treatment implements AutoCloseable {
 		return "[unknown treatment]";
 	}
 
-	public void setWhatTreatment(TypeOfTreatment whatTreatment) throws WrongTreatmentTypeException {
+	public final void setWhatTreatment(TypeOfTreatment whatTreatment) throws WrongTreatmentTypeException {
 		if (whatTreatment != TypeOfTreatment.STAYINHOSPITAL
 				&& whatTreatment != TypeOfTreatment.APPOINTMENTS) {
 			this.whatTreatment = TypeOfTreatment.STAYINHOSPITAL;
