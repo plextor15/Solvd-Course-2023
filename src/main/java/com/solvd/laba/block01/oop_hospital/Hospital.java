@@ -16,7 +16,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 	private static final Logger LOGGER = LogManager.getLogger(Hospital.class);
 
 	static {
-		LOGGER.info("Hospital no." + (++howManyHospitals) + " successfully created.\n");
+		LOGGER.info("Hospital no." + (++howManyHospitals) + " successfully created.");
 	}
 
 	public Hospital(String hospitalName, int amountOfRooms) {
@@ -41,7 +41,7 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 
 	@Override
 	public void welcomeMessage() {
-		LOGGER.info("\nWelcome to " + this.toString());
+		LOGGER.info("\n\nWelcome to " + this.toString());
 	}
 
 	public Doctor assignDoctor(Patient p) {

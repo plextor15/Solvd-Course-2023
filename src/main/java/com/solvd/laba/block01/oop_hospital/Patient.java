@@ -29,6 +29,7 @@ public class Patient extends Person implements IPrintable {
 		}
 
 		this.socialNumber = new Random().nextInt(10000);//.nextInt(100000, 999999); //id number of citizen (PESEL)
+		this.creationNotif();
 	}
 
 	@Override
@@ -115,5 +116,10 @@ public class Patient extends Person implements IPrintable {
 
 	public void setStayInHospital(StayInHospital stayInHospital) {
 		this.stayInHospital = stayInHospital;
+	}
+
+	private void creationNotif() {
+		IPrintable iPrintable = this;
+		LOGGER.info(iPrintable.printOut() + " successfully created.");
 	}
 }
