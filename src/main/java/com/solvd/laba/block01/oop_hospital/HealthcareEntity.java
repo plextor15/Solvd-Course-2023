@@ -21,4 +21,9 @@ public abstract class HealthcareEntity implements IAppointable {
 	}
 
 	public abstract void welcomeMessage();
+
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }

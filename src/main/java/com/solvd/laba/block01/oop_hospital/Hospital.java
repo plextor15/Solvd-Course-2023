@@ -41,7 +41,8 @@ public final class Hospital extends HealthcareEntity implements ITreatable, IApp
 
 	@Override
 	public void welcomeMessage() {
-		LOGGER.info("\n\nWelcome to " + this.toString());
+		HealthcareEntity he = this;
+		LOGGER.info("\n\nWelcome to " + he.toString());
 	}
 
 	public Doctor assignDoctor(Patient p) {

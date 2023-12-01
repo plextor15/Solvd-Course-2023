@@ -13,4 +13,8 @@ public abstract class Person {
 	public String toString() {
 		return this.name;
 	}
+
+	protected void creationInfo() {
+		System.out.print(this.name + " created.");
+	}
 }

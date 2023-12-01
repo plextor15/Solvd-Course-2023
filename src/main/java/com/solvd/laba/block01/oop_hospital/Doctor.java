@@ -125,4 +125,8 @@ public class Doctor extends Person implements IPrintable, IPrescribable {
 		prescription.addMedicines(med);
 		p.setPrescription(prescription);
 	}
+
+	public void creationInfo() {
+		LOGGER.info(this.printOut() + " successfully created.");
+	}
 }

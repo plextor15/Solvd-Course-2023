@@ -46,6 +46,8 @@ public class Main {
 	public static void main(String[] args) throws AmountOfPainOutOfRangeException {
 		Hospital hospital = new Hospital("UCLA Medical Center", 10);
 		Doctor doc = new Doctor("John", "Mitchell", "laryngologist", "27-11-2023", true);
+		Person person = doc;
+		person.creationInfo();
 		hospital.doctors.add(doc);
 
 		Patient sickPatient = new Patient("Andrew", "Kowalsky", 30);
