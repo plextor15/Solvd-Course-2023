@@ -10,7 +10,7 @@ Solvd_Course.iml
 /src/META-INF
 
 
-/src/main/resources/unique_words/
+#/src/main/resources/unique_words/
 /target/
 
 
