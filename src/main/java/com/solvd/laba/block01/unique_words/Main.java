@@ -16,8 +16,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		//final String filePath = args[0];
-		final String inputFilePath = "src/main/resources/unique_words/wolf.txt";
-		final String outputFilePath = "src/main/resources/unique_words/out.txt";
+		String inputFilePath = "src/main/resources/unique_words/wolf.txt";
+		String outputFilePath = "src/main/resources/unique_words/out.txt";
 		String fileContent;
 
 
